@@ -54,8 +54,11 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	redmodulev1 "red/api/red/red/module"
+	testmodulev1 "red/api/red/test/module"
 	_ "red/x/red/module" // import for side-effects
 	redmoduletypes "red/x/red/types"
+	_ "red/x/test/module" // import for side-effects
+	testmoduletypes "red/x/test/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -94,6 +97,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		redmoduletypes.ModuleName,
+		testmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +123,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		redmoduletypes.ModuleName,
+		testmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +143,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		redmoduletypes.ModuleName,
+		testmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -296,6 +302,10 @@ var (
 			{
 				Name:   redmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&redmodulev1.Module{}),
+			},
+			{
+				Name:   testmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&testmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
